@@ -1,5 +1,5 @@
 body {
-  margin: 0;
+  margin-top: 80px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -19,15 +19,31 @@ code {
   cursor: pointer;
 }
 
+.favButton.fabAdded {
+  background-color: #0077ff;
+  color: white;
+}
+
 h1{
   text-align: center;
 }
 
 nav{
   display: flex;
-  width: 80vw;
+  width: 100%;
   justify-content: flex-start;
   padding: 1rem;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  background-color: rgb(228, 226, 226);
+}
+
+#DHico{
+  width: 20px;
+  margin: 0;
+  padding: 0;
+  filter:none;
 }
 
 a{
@@ -42,7 +58,7 @@ a:hover{
 
 footer {
   display: flex;
-  justify-content: center;
+  justify-content: right;
   text-align: center;
   padding: 2rem;
   position: relative;
@@ -50,12 +66,22 @@ footer {
   width: 90%;
   height: 40px;
   margin-top: 2rem;
+  gap:1rem;
 }
 
-footer > img{
+footer img{
+  width: 30px;
+  margin: 0;
+  filter:invert(1) brightness(0.5);
+}
+
+#DHLogo{
   width: 200px;
   margin: 0;
+  padding: 0;
+  filter:none;
 }
+
 footer > p{
   margin: 0;
   padding-top: 0.7rem;
@@ -94,6 +120,11 @@ form{
   margin: 0 auto;
 }
 
+.card img {
+  max-width: 100%;
+  height: 'auto';
+}
+
 table {
  border-collapse: collapse;
     border-spacing: 0;
@@ -118,5 +149,36 @@ tr:nth-child(even) {
   color: white;
 }
 .dark > a {
+  color: white;
+}
+
+.dark #DHico{
+  filter:invert(0.2) brightness(2);
+}
+.dark footer img{
+  filter:none;
+}
+.dark #DHLogo{
+  filter:invert(1) brightness(2);
+}
+
+.dark nav a {
+  color: white;
+}
+
+.dark .user-details td{
+  background-color: slategray;
+}
+
+.dark .user-details a{
+  color: white;
+}
+
+.dark nav{
+  background-color: #121212;
+}
+
+.dark nav button{
+  background-color: #121212bd;
   color: white;
 }
