@@ -5,20 +5,22 @@ import Card from '../Components/Card'
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Home = () => {
-  const [dentists,setDentists]=useState([]);
-  useEffect(()=>{
+  const [dentists, setDentists] = useState([]);
+
+  useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
-    .then((response)=>response.json())
-    .then((data)=>{
-      const formattedDentists=data.map((user)=>({
-        id: user.id,
-        name: user.name,
-        username: user.username,
-      }));
-      setDentists(formattedDentists);
-    })
-    .catch((error)=>console.error("Error trayendo dentistas:",error));
-  },[]);
+      .then((response) => response.json())
+      .then((data) => {
+        const formattedDentists = data.map((user) => ({
+          id: user.id,
+          name: user.name,
+          username: user.username,
+        }));
+
+        setDentists(formattedDentists);
+      })
+      .catch((error) => console.error("Error trayendo dentistas:", error));
+  }, []);
 
   return (
     <main className="" >

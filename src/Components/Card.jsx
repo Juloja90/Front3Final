@@ -1,14 +1,17 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ContextGlobal } from "./utils/global.context";
 
 const Card = ({ name, username, id }) => {
+  console.log(`detalle del dentista ${name}`,{ name, username, id });
   const { state, dispatch } = useContext(ContextGlobal);
 
   const isFavorite = state.favorites.some((fav) => fav.id === id);
 
   const handleFavoriteClick = () => {
     const dentist = { name, username, id };
+
+    localStorage.setItem("dentistData", JSON.stringify(dentist));
 
     if (isFavorite) {
       dispatch({ type: 'REMOVE_FAVORITE', payload: id });
@@ -20,11 +23,10 @@ const Card = ({ name, username, id }) => {
   return (
     <div className="card">
       <img src={`/images/doctor.jpg`} alt="Dentist" />
-      <h3>{name}</h3>
-      <p>{username}</p>
       <Link to={`/dentist/${id}`} className="card-link">
-        Ver detalle
+      <h3>{name}</h3>
       </Link>
+      <p>{username}</p>
       <button
         onClick={handleFavoriteClick}
         className={`favButton ${isFavorite ? "fabAdded" : ""}`}

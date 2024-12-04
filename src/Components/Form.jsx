@@ -1,9 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
-const Form = () => {
-  const [formData, setFormData] = useState({ name: "", email: "" }); 
-  const [message, setMessage] = useState(""); 
-  const [error, setError] = useState(false); 
+const Form = ({ onSubmit }) => {
+  const [formData, setFormData] = useState({ name: "", email: "" });
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState(false);
+
+  // Cargar los datos guardados en localStorage cuando el componente se monta
+  useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem("userData"));
+    if (storedData) {
+      setFormData(storedData);
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -13,9 +22,9 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (formData.name.trim().length < 3 || formData.name[0]===" ") {
+    if (formData.name.trim().length < 3) {
       setError(true);
-      setMessage("El nombre debe contener al menos 3 caracteres y no puede iniciar con espacio.");
+      setMessage("El nombre debe contener al menos 3 caracteres");
       return;
     }
 
@@ -27,7 +36,13 @@ const Form = () => {
 
     setError(false);
     setMessage(`Gracias ${formData.name}, te contactaremos cuanto antes via mail`);
-    setFormData({ name: "", email: "" }); 
+    
+    localStorage.setItem("userData", JSON.stringify(formData));
+    
+    console.log("Datos enviados por el usuario:", formData);
+    onSubmit(formData);
+
+    setFormData({ name: "", email: "" });
   };
 
   return (
@@ -56,14 +71,20 @@ const Form = () => {
           />
         </div>
         <button type="submit">Enviar</button>
+        <button type="reset">Limpiar</button>
       </form>
       {message && (
         <h2>
           {message}
         </h2>
       )}
+      
     </div>
   );
+};
+
+Form.propTypes = {
+  onSubmit: PropTypes.func.isRequired
 };
 
 export default Form;

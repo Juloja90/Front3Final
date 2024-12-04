@@ -12,7 +12,7 @@ import Favs from "./Routes/Favs";
 function App() {
   return (
     <ContextProvider>
-      <Router>
+      <Router futureFlags={{ v7_relativeSplatPath: true }}>
       <div className="App">
           <Navbar/>
           <main>

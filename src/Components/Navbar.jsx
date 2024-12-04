@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import {useContext} from 'react'
 import { ContextGlobal } from './utils/global.context';
 
 const Navbar = () => {
@@ -14,7 +14,7 @@ const Navbar = () => {
       <a href="/Home">Home</a>
       <a href="/Favs">Favorites</a>
       <a href="/contact">Contact</a>
-      <button title={`cambio de tema a ${state.theme === "light" ? "Oscuro":"Claro"}`} onClick={toggleTheme}><img img src={`/DH.ico`} alt='DH-ico' id="DHico" ></img></button>
+      <button title={`cambio de tema a ${state.theme === "light" ? "Oscuro":"Claro"}`} onClick={toggleTheme}><img src={`/DH.ico`} alt='DH-ico' id="DHico" ></img></button>
     </nav>
   );
 };
